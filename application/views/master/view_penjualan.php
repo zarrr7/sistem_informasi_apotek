@@ -40,8 +40,10 @@
                             <table id="example1" class="table table-bordered table-hover dt-responsive" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>Id Penjualan</th>
+                                        <th>#</th>
                                         <th>Tanggal</th>
+                                        <th>Obat</th>
+                                        <th>Jumlah Item</th>
                                         <th>Total Harga</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -49,15 +51,20 @@
                                 <?php foreach ($penjualan as $pjn): ?>
                                     <tbody>
                                         <tr>
-                                            <td><?= $pjn->id_penjualan ?></td>
+                                            <td><?= $num++ ?></td>
+                                            <td><?= $num++ ?></td>
                                             <td><?= $pjn->tanggal ?></td>
-                                            <td><?= $pjn->obat ?></td>
-                                            <td><?= $pjn->jumlah ?></td>
-                                            <td><?= $pjn->harga ?></td>
+                                            <td><?= $obat->get_data("tb_obat", ["id_obat" => $pjn->id_obat])->row()->obat ?></td>
+                                            <td><?= $detail->getData("tb_detail_penjualan", ['id_penjualan' => $pjn->id_penjualan])->num_rows() ?></td>
+                                            <td class="rupiah"><?= $pjn->total ?></td>
                                             <td><?= $pjn->total ?></td>
                                             <td>
-                                                <a href="<?= base_url('master/penjualan/form/' . $pjn->id_penjualan) ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                                <a href="<?= base_url('master/penjualan/delete/' . $pjn->id_penjualan) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');"><i class="fas fa-trash"></i></a>
+                                                <a href="<?= base_url('master/penjualan/form/' . $pjn->id_penjualan) ?>"
+                                                    class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                                <a href="<?= base_url('master/penjualan/delete/' . $pjn->id_penjualan) ?>"
+                                                    class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');"><i
+                                                        class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -87,6 +94,28 @@
     <script src="<?= base_url('assets/template') ?>/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?= base_url('assets/template') ?>/dist/js/demo.js"></script>
+    <script>
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+    $(document).ready(function () {
+        $(".rupiah").each(function (i, e) {
+            $(this).text(formatRupiah($(this).text(), true))
+        });
+    });
+    </script>
 </body>
 
 </html>

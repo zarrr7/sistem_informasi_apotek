@@ -2,73 +2,65 @@
     <!-- Small boxes (Stat box) -->
     <div class="row">
         <div class="col-lg-3 col-6">
-            <!-- small box -->
+            <!-- small card -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h4>Data Stok Obat</h4>
-                    <p></p>
+                    <h3>150</h3>
+
+                    <p>Data Obat</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
+                    <i class="fas fa-chart-pie"></i>
                 </div>
-                <a href="<?= base_url('master/obat') ?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h4>Data Laporan</h4>
-                    <p></p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="<?= base_url('master/laporan') ?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
+            <!-- small card -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h4>Data Penjualan</h4>
-                    <p></p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
-                </div>
-                <a href="<?= base_url('master/penjualan') ?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h4 class="text-white">Data Pembelian</h4>
-                    <p></p>
+                    <h3>150</h3>
+
+                    <p>Total Penjualan</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-shopping-cart"></i>
                 </div>
-                <a href="<?= base_url('master/pembelian') ?>" class="small-box-footer text-white" style="color: white !important;">
-                    Selengkapnya <i class="fas fa-arrow-circle-right"></i>
-                </a>
             </div>
-
-
-
         </div>
-        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>150</h3>
+
+                    <p>Total Pembelian</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>150</h3>
+
+                    <p>Data User</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+
 
         <!-- penjualan -->
         <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header border-0">
-                    <div class="d-flex justify-content-between">
-                        <h3 class="card-title">Penjualan</h3>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h4>Penjualan</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -105,10 +97,10 @@
 
         <!-- pembelian -->
         <div class="col-lg-6 right">
-            <div class="card">
-                <div class="card-header border-0">
-                    <div class="d-flex justify-content-between">
-                        <h3 class="card-title">Pembelian</h3>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h4>Pembelian</h4>
                     </div>
                 </div>
                 <div class="card-body">
