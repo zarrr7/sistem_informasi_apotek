@@ -42,22 +42,19 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Tanggal</th>
-                                        <th>Obat</th>
                                         <th>Jumlah Item</th>
                                         <th>Total Harga</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <?php $num = 1 ?>
                                 <?php foreach ($penjualan as $pjn): ?>
                                     <tbody>
                                         <tr>
                                             <td><?= $num++ ?></td>
-                                            <td><?= $num++ ?></td>
                                             <td><?= $pjn->tanggal ?></td>
-                                            <td><?= $obat->get_data("tb_obat", ["id_obat" => $pjn->id_obat])->row()->obat ?></td>
                                             <td><?= $detail->getData("tb_detail_penjualan", ['id_penjualan' => $pjn->id_penjualan])->num_rows() ?></td>
                                             <td class="rupiah"><?= $pjn->total ?></td>
-                                            <td><?= $pjn->total ?></td>
                                             <td>
                                                 <a href="<?= base_url('master/penjualan/form/' . $pjn->id_penjualan) ?>"
                                                     class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>

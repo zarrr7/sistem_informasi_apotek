@@ -99,8 +99,9 @@
                                 <div class="col-sm-8">
                                     <select class="form-control select2" id="role" name="role" style=" width: 100%;">
                                         <option value="" disabled selected>Pilih Role!</option>
-                                        <option>Kasir</option>
                                         <option>Owner</option>
+                                        <option>Admin</option>
+                                        <option>Kasir</option>
                                     </select>
                                 </div>
                             </div>

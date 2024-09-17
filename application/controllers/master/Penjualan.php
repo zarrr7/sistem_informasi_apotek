@@ -58,7 +58,7 @@ class Penjualan extends CI_Controller {
                 "id_penjualan" => $id,
                 "jumlah" => $obat->jumlah,
                 "harga_jual" => $obat->harga_jual,
-                "total" => $obat-> $obat->jumlah * $obat->harga_jual,
+                "total" => $obat->jumlah * $obat->harga_jual,
             ], 'tb_detail_penjualan');
 
             $this->penjualan_detail_model->updateData(["harga_jual" => $obat->harga_jual, "stok" => $stok - $obat->jumlah], ["id_obat" => $obat->id_obat], "tb_obat");
