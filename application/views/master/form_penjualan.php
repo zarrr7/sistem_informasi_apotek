@@ -28,29 +28,24 @@
                     <label for="inputId" class="col-sm-2 col-form-label">Id Penjualan</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="id_penjualan" name="id_penjualan"
-                            value="<?= $penjualan ? $penjualan->id_penjualan : "" ?>" readonly>
+                            value="<?= $penjualan_edit ? $penjualan_edit->id_penjualan : "" ?>" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
                     <div class="col-sm-4">
                         <input type="date" class="form-control" id="tanggal" name="tanggal"
-                            value="<?= $penjualan ?  $penjualan->tanggal : "" ?>" required>
+                            value="<?= $penjualan_edit ?  $penjualan_edit->tanggal : "" ?>" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="obat" class="col-sm-2 col-form-label">Obat</label>
                     <div class="col-sm-4">
                         <select name="id_obat" class="form-control">
-                            <option value="" disabled <?php if (empty($penjualan)) : ?>selected<?php endif ?>>
+                            <option value="" disabled selected>
                                 Pilih Data Obat!</option>
                             <?php foreach ($obat as $obt) : ?>
-                                <?php if (!empty($penjualan)) : ?>
-                                    <?php $selected = $obt->id_obat == $penjualan->id_obat ? "selected" : ""; ?>
-                                <?php else : ?>
-                                    <?php $selected = ""; ?>
-                                <?php endif; ?>
-                                <option value="<?= $obt->id_obat ?>" <?= $selected ?>><?= $obt->obat ?></option>
+                                <option value="<?= $obt->id_obat ?>"><?= $obt->obat ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -76,19 +71,20 @@
                     </thead>
                     <?php $total = 0; ?>
                     <tbody id="purchaseItems">
-                        <?php if (!empty($penjualan)) : ?>
-                            <?php foreach ($detail_penjualan->getData("tb_detail_penjualan", ["id_penjualan" => $penjualan->id_penjualan])->result() as $detail) : ?>
+                        <?php if (!empty($penjualan_edit)) : ?>
+                            <?php foreach ($detail_penjualan->getData("tb_detail_penjualan", ["id_penjualan" => $penjualan_edit->id_penjualan])->result() as $detail) : ?>
                                 <?php $num = 1; ?>
                                 <?php $total += $detail->jumlah * $detail->harga_jual; ?>
                                 <tr data-iddetail="<?= $detail->id_detail_penjualan ?>" data-id="<?= $detail->id_obat ?>"
                                     data-rownum="<?= $num++ ?>">
                                     <td><?= $obat_model->get_data("tb_obat", ["id_obat" => $detail->id_obat])->row()->obat ?>
                                     </td>
-                                    <td><?= $detail->jumlah ?></td>
-                                    <td><?= number_format($detail->harga_jual, 0, ',', '.') ?></td>
+                                    <td><input type="text" class="form-control reset-total format-rupiah"
+                                            value="<?= $detail->jumlah ?>" data-id="<?= $detail->id_penjualan ?>" /></td>
+                                    <td><input type="text" class="form-control reset-total format-rupiah"
+                                            value="<?= number_format($detail->harga_jual, 0, ',', '.') ?>" /></td>
                                     <td><?= number_format($detail->total, 0, ',', '.') ?></td>
-                                    <td><button class="btn btn-warning btn-sm update-item" data-toggle="modal"
-                                            data-target="#modalObat"><i class="fas fa-edit"></i></button>
+                                    <td>
                                         <button class="btn btn-danger btn-sm remove-item"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
@@ -100,7 +96,7 @@
                 <div class="form-group row justify-content-end align-items-center">
                     <label for="total_harga" class="col-form-label mr-1">Total Harga</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="total_harga" name="total" readonly>
+                        <input type="text" class="form-control" id="total_harga" name="total" value="<?= number_format($total, 0, ',', '.') ?>" readonly>
                     </div>
                     <script>
                         function formatRupiah(angka, prefix) {

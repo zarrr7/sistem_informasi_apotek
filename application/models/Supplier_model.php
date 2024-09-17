@@ -1,5 +1,12 @@
 <?php
 class Supplier_model extends CI_Model {
+    public function get_all_supplier() {
+        $this->db->select('*');
+        $this->db->from('tb_supplier');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function get_data($table, $where = null) {
         if ($where) {
             return $this->db->get_where($table, $where);

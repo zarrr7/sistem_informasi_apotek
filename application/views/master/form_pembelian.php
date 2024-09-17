@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Pembelian</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-</head>
-
-<body>
     <div class="card card-info">
         <div class="card-header">
             <h5><b>Data Pembelian</b></h5>
@@ -95,7 +82,7 @@
                     </div>
                     <script>
                         function formatRupiah(angka, prefix) {
-                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                            var number_string = angka.toString().replace(/[^,\d]/g, '').toString(),
                                 split = number_string.split(','),
                                 sisa = split[0].length % 3,
                                 rupiah = split[0].substr(0, sisa),
@@ -165,14 +152,14 @@
                     row.find("td:eq(0)").text(obat);
                     row.find("td:eq(1)").text(jumlah);
                     row.find("td:eq(2)").text(harga_beli);
-                    row.find("td:eq(3)").text(total.toLocaleString());
+                    row.find("td:eq(3)").text(formatRupiah(total));
                 } else {
                     // Tambahkan data ke tabel
                     var newRow = `<tr data-id="${id_obat}" data-rownum="${rownum}">
                                     <td>${obat}</td>
                                     <td>${jumlah}</td>
                                     <td>${harga_beli}</td>
-                                    <td>${total.toLocaleString()}</td>  <!-- Tampilkan dalam format ribuan -->
+                                    <td>${formatRupiah(total)}</td>  <!-- Tampilkan dalam format ribuan -->
                                     <td><button class="btn btn-warning btn-sm update-item" data-toggle="modal" data-target="#modalObat"><i class="fas fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm remove-item"><i class="fas fa-trash"></i></button></td>
                                     </tr>`;
@@ -184,14 +171,6 @@
             });
             // Menghapus item dari tabel
             $("body").on("click", ".remove-item", function(e) {
-                const id = $(this).closest("tr").data("iddetail");
-                $.ajax({
-                    type: "GET",
-                    url: "http://localhost/skripsi/master/pembelian/deletedetail/" + id,
-                    success: function(res) {
-
-                    }
-                });
                 $(this).closest("tr").remove();
             });
         });
@@ -209,7 +188,7 @@
                     totalHarga += totalItem;
                 });
                 // Format totalHarga dengan format ribuan dan set ke input Total Harga
-                $("#total_harga").val(totalHarga.toLocaleString('id-ID'));
+                $("#total_harga").val(formatRupiah(totalHarga));
             });
         });
     </script>
@@ -310,4 +289,3 @@
 
         });
     </script>
-</body>

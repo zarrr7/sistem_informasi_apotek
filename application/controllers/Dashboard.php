@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('role') != 'kasir') {
+        if (!$this->session->userdata('user_id')) {
             redirect('auth/login');
         }
     }
@@ -15,7 +15,7 @@ class Dashboard extends CI_Controller {
     {
         $data['active_page'] = 'dashboard'; // Menandai halaman aktif
         $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('dashboard');
         $this->load->view('templates/footer');
     }

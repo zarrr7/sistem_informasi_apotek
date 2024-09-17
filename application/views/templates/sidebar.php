@@ -1,3 +1,9 @@
+<style>
+    .nav-treeview .nav-link {
+        margin-left: 1rem;
+    }
+</style>
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
@@ -46,11 +52,14 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="<?php echo base_url('dashboard') ?>" class="nav-link">
+                            <a href="<?php echo base_url('dashboard') ?>" class="nav-link" data-page="dashboard">
                                 <i class="nav-icon fas fa-landmark"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
+                        
+                        <?php if ((strtolower($this->session->userdata('role')) == "admin") || (strtolower($this->session->userdata('role')) == "kasir")) :?>
+                        <?php if ((strtolower($this->session->userdata('role')) == "admin")) :?>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -59,19 +68,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('master/satuan') ?>" class="nav-link">
+                                    <a href="<?php echo base_url('master/satuan') ?>" class="nav-link gulung" data-page="satuan">
                                         <i class="nav-icon fa-solid fas fa-filter"></i>
                                         <p>Data Satuan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('master/kategori') ?>" class="nav-link">
+                                    <a href="<?php echo base_url('master/kategori') ?>" class="nav-link gulung" data-page="kategori">
                                         <i class="nav-icon fa-solid fas fa-flask"></i>
                                         <p>Data Kategori</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('master/supplier') ?>" class="nav-link">
+                                    <a href="<?php echo base_url('master/supplier') ?>" class="nav-link gulung" data-page="supplier">
                                         <i class="nav-icon fa-solid fas fa-store"></i>
                                         <p>Data Supplier</p>
                                     </a>
@@ -85,11 +94,12 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url('master/obat') ?>" class="nav-link">
+                            <a href="<?php echo base_url('master/obat') ?>" class="nav-link" data-page="obat">
                                 <i class="nav-icon fas fa-pills"></i>
                                 <p>Data Obat</p>
                             </a>
                         </li>
+                        <?php endif ?>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-wallet"></i>
@@ -98,13 +108,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('master/pembelian') ?>" class="nav-link">
+                                    <a href="<?php echo base_url('master/pembelian') ?>" class="nav-link gulung" data-page="pembelian">
                                         <i class="nav-icon fas fa-solid fa-download"></i>
                                         <p>Pembelian</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url('master/penjualan') ?>" class="nav-link">
+                                    <a href="<?php echo base_url('master/penjualan') ?>" class="nav-link gulung" data-page="penjualan">
                                         <i class="nav-icon fas fa-solid fa-upload"></i>
                                         <p>Penjualan</p>
                                     </a>
@@ -112,18 +122,21 @@
 
                             </ul>
                         </li>
+                        <?php endif ?>
+                        <?php if ((strtolower($this->session->userdata('role')) == "admin") || (strtolower($this->session->userdata('role')) == "owner"))  :?>
                         <li class="nav-item">
-                            <a href="<?php echo base_url('master/laporan') ?>" class="nav-link">
+                            <a href="<?php echo base_url('master/laporan') ?>" class="nav-link" data-page="laporan">
                                 <i class="nav-icon fas fa-solid fa-chart-line"></i>
                                 <p>Laporan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo base_url('master/user') ?>" class="nav-link">
+                            <a href="<?php echo base_url('master/user') ?>" class="nav-link" data-page="user">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>User Management</p>
                             </a>
                         </li>
+                        <?php endif ?>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

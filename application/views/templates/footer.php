@@ -34,6 +34,7 @@
 <script src="<?= base_url('assets/template') ?>/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+    const activePage = "<?= $active_page ?>";
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
@@ -48,6 +49,15 @@
             "autoWidth": false,
             "responsive": true,
         });
+    });
+
+    $(document).ready(function () {
+        const activeMenu = $(`[data-page=${activePage}]`);
+        activeMenu.addClass("active");
+        if (activeMenu.hasClass("gulung")) {
+            activeMenu.closest(".nav-link").addClass("active");
+            activeMenu.closest(".nav-treeview").closest(".nav-item").addClass("menu-open");
+        }
     });
 </script>
 </body>

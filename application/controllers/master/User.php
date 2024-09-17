@@ -14,6 +14,7 @@ class User extends CI_Controller
 
     public function index()
     {
+        $data['active_page'] = 'user'; // Menandai halaman aktif
         $data['user'] = $this->user_model->get_data('tb_user')->result();
 
         $this->load->view('templates/header');
@@ -24,6 +25,7 @@ class User extends CI_Controller
 
     public function form($id_user = null)
     {
+        $data['active_page'] = 'user'; // Menandai halaman aktif
         $data['user'] = $this->user_model->get_data('tb_user')->result();
 
         if ($id_user) {

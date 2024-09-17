@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Data Obat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet"
-        href="<?= base_url('assets/template') ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet"
-        href="<?= base_url('assets/template') ?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/dist/css/adminlte.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-
-<body>
     <section class="content">
         <?php if ($this->session->flashdata('pesan')): ?>
             <?= $this->session->flashdata('pesan'); ?>
@@ -30,7 +10,8 @@
                             <div class="card-title">
                                 <h3><b>Data Obat</b></h3>
                             </div>
-                            <a href="#" class="btn bg-gradient-success ml-auto" data-toggle="modal" data-target="#formModal">
+                            <a href="#" class="btn bg-gradient-success ml-auto" data-toggle="modal"
+                                data-target="#formModal">
                                 <i class="fa fa-plus"></i> Tambah
                             </a>
 
@@ -85,7 +66,8 @@
             </div>
         </div>
 
-        <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content card card-info">
                     <form method="POST" action="<?= base_url('master/obat/tambah') ?>" id="form-add">
@@ -175,18 +157,6 @@
         </script>
 
     </section>
-
-    <script src="<?= base_url('assets/template') ?>/plugins/jquery/jquery.min.js"></script>
-    <script src="<?= base_url('assets/template') ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url('assets/template') ?>/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url('assets/template') ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="<?= base_url('assets/template') ?>/plugins/datatables-responsive/js/dataTables.responsive.min.js">
-    </script>
-    <script src="<?= base_url('assets/template') ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js">
-    </script>
-    <script src="<?= base_url('assets/template') ?>/dist/js/adminlte.min.js"></script>
-    <script src="<?= base_url('assets/template') ?>/dist/js/demo.js"></script>
-
     <script>
         $("body").on("change", ".harga-jual", function(e) {
             const val = $(this).val();
@@ -276,7 +246,3 @@
             });
         }, 3000); // Durasi 3000 ms (3 detik)
     </script>
-
-</body>
-
-</html>

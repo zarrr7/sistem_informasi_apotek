@@ -13,6 +13,7 @@ class Satuan extends CI_Controller {
 
     public function index()
     {
+        $data['active_page'] = 'satuan'; // Menandai halaman aktif
         $data['satuan'] = $this->satuan_model->get_data('tb_satuan')->result();
 
         $this->load->view('templates/header');
@@ -23,6 +24,7 @@ class Satuan extends CI_Controller {
 
     public function form($id_satuan = null)
     {
+        $data['active_page'] = 'satuan'; // Menandai halaman aktif
         $data['satuan'] = $this->satuan_model->get_data('tb_satuan')->result();
         
         if ($id_satuan) {

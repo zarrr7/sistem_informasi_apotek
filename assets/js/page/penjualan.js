@@ -148,13 +148,8 @@ $("body").on("submit", "#purchaseForm", function (e) {
 
 // Menghapus item dari tabel
 $("body").on("click", ".remove-item", function (e) {
-	// const id = $(this).closest("tr").data("iddetail");
-	// $.ajax({
-	//     type: "GET",
-	//     url: "http://localhost/skripsi/master/penjualan/deletedetail/" + id,
-	//     success: function (res) {},
-	// });
 	$(this).closest("tr").remove();
+	$("#calculateTotal").trigger("click");
 });
 
 $("#calculateTotal").click(function () {

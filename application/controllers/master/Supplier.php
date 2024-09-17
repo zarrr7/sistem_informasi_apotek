@@ -14,6 +14,7 @@ class Supplier extends CI_Controller
 
     public function index()
     {
+        $data['active_page'] = 'supplier'; // Menandai halaman aktif
         $data['supplier'] = $this->supplier_model->get_data('tb_supplier')->result();
 
         $this->load->view('templates/header');
@@ -24,6 +25,7 @@ class Supplier extends CI_Controller
 
     public function form($id_supplier = null)
     {
+        $data['active_page'] = 'supplier'; // Menandai halaman aktif
         if ($id_supplier) {
             // Mengambil data berdasarkan id_supplier yang diklik
             $data['supplier_edit'] = $this->supplier_model->get_data('tb_supplier', ['id_supplier' => $id_supplier])->row();
@@ -93,5 +95,40 @@ class Supplier extends CI_Controller
          </button>
         </div>');
         redirect('master/supplier');
+    }
+
+    public function find()
+    {
+        $id_supplier = $this->input->post_get('id_supplier');
+
+        if (!$id_supplier) {
+
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(200)
+                ->set_output(json_encode([
+                    'status' => 'success',
+                    'message' => 'Data berhasil diambil',
+                    'data' => $this->supplier_model->get_all_supplier(),
+                ]));
+        }
+        $supplier = $this->supplier_model->get_data('tb_supplier', ['id_supplier' => $id_supplier])->row();
+        if ($supplier) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(200)
+                ->set_output(json_encode([
+                    'data' => $supplier,
+                    'status' => 'success',
+                    'message' => 'Data berhasil ditemukan',
+                ]));
+        }
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(404)
+            ->set_output(json_encode([
+                'status' => 'error',
+                'message' => 'Data tidak ditemukan',
+            ]));
     }
 }

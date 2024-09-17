@@ -41,24 +41,24 @@ class Auth extends CI_Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
-
+            
             $user = $this->auth_model->check_login($username, $password);
-
+            
             if ($user) {
                 $this->session->set_userdata('user_id', $user->id_user);
                 $this->session->set_userdata('username', $user->username);
                 $this->session->set_userdata('role', $user->role);
-
+                
                 if ($user->role == 'owner') {
                     redirect('owner/dashboard');
                 } elseif ($user->role == 'kasir') {
                     redirect('dashboard');
                 } else {
-                    redirect('auth/login');
+                    redirect('dashboard');
                 }
             } else {
                 $this->session->set_flashdata('error', 'Username atau Password salah');
-                redirect('auth/login');
+                redirect('dashboard');
             }
         }
 

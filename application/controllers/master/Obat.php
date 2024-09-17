@@ -15,6 +15,7 @@ class Obat extends CI_Controller
     }
     public function index($id_obat = null)
     {
+        $data['active_page'] = 'obat'; // Menandai halaman aktif
         $data['obat'] = $this->obat_model->get_data('tb_obat')->result();
         $data['obat'] = $this->obat_model->get_all_obat();
 
@@ -37,49 +38,50 @@ class Obat extends CI_Controller
     // public function form
 
     public function tambah()
-{
-    if ($this->input->post('form_action') == 'edit') {
-        // Jika form digunakan untuk edit, arahkan ke metode update
-        return $this->update();
-    }
+    {
+        $data['active_page'] = 'obat'; // Menandai halaman aktif
+        if ($this->input->post('form_action') == 'edit') {
+            // Jika form digunakan untuk edit, arahkan ke metode update
+            return $this->update();
+        }
 
-    $data = [
-        'obat' => $this->input->post('obat'),
-        'id_kategori' => $this->input->post('kategori'),
-        'id_satuan' => $this->input->post('satuan'),
-    ];
+        $data = [
+            'obat' => $this->input->post('obat'),
+            'id_kategori' => $this->input->post('kategori'),
+            'id_satuan' => $this->input->post('satuan'),
+        ];
 
-    $this->obat_model->insert_data($data, 'tb_obat');
-    $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show col-sm-3" role="alert">
+        $this->obat_model->insert_data($data, 'tb_obat');
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show col-sm-3" role="alert">
         Data obat berhasil ditambahkan!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>');
 
-    redirect('master/obat');
-}
+        redirect('master/obat');
+    }
 
-public function update()
-{
-    $id_obat = $this->input->post('id_obat');
-    
-    $data = [
-        'obat' => $this->input->post('obat'),
-        'id_kategori' => $this->input->post('kategori'),
-        'id_satuan' => $this->input->post('satuan'),
-    ];
+    public function update()
+    {
+        $id_obat = $this->input->post('id_obat');
 
-    $this->obat_model->update_data($data, ['id_obat' => $id_obat], 'tb_obat');
+        $data = [
+            'obat' => $this->input->post('obat'),
+            'id_kategori' => $this->input->post('kategori'),
+            'id_satuan' => $this->input->post('satuan'),
+        ];
 
-    $this->session->set_flashdata('pesan', '<div class="alert alert-info alert-dismissible fade show col-sm-3" role="alert">
+        $this->obat_model->update_data($data, ['id_obat' => $id_obat], 'tb_obat');
+
+        $this->session->set_flashdata('pesan', '<div class="alert alert-info alert-dismissible fade show col-sm-3" role="alert">
         Data obat berhasil diupdate!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>');
-    redirect('master/obat');
-}
+        redirect('master/obat');
+    }
 
 
     public function delete($id_obat)
